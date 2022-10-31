@@ -1,5 +1,5 @@
 ---
-en:
+es:
   activerecord:
     models:
       category:
@@ -7,9 +7,16 @@ en:
         other: Categorías
   categories:
     form:
-      description: Description
-      name: Name
+      description: Descipción
+      name: Nombre
     new_category: Nueva categoría
+  tasks:
+    form:
+      description: Descipción
+      name: Nombre
+      due_date: Fecha de vencimiento
+      category: Categoría
+    new_task: Nueva taréa
   common:
     actions: Acciones
     back: Volver
@@ -23,7 +30,7 @@ en:
     edit: Editar
     error_notification:
       default_message: 'Por favor, revise los siguientes errores:'
-    'false': 'False'
+    'false': false
     new: Nuevo
     required: Requerido
     save: Guardar
@@ -35,4 +42,4 @@ en:
   hello: Hello world
   task:
     errors:
-      invalid_due_date: Invalid due date
+      due_date: La fecha no puede estar en el pasado
