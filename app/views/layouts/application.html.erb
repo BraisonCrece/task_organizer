@@ -10,6 +10,9 @@
   </head>
   <body>
     <main class="container">
+      <% if user_signed_in? %>
+        <%= button_to 'log out', destroy_user_session_path, method: :delete, data: { turbo_confirm: 'You sure?' }, class: 'btn btn-primary' %>
+      <% end %>
       <%= yield %>
     </main>
   </body>
