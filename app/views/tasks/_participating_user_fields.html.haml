@@ -1,0 +1,4 @@
+.nested-fields
+  = form.input :user_id, as: :select, collection: User.all.map {|u| [u.email, u.id]}, label: t('.user')
+  = form.input :role
+  = link_to_remove_nested form

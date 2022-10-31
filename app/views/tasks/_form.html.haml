@@ -1,13 +1,15 @@
 -# frozen_string_literal: true
-= simple_form_for(@task) do |f|
-  = f.error_notification
-  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+= simple_form_for(@task) do |form|
+  = form.error_notification
+  = form.error_notification message: form.object.errors[:base].to_sentence if form.object.errors[:base].present?
 
   .form-inputs
-    = f.input :name, label: t('.name')
-    = f.input :description, label: t('.description')
-    = f.input :due_date, label: t('.due_date')
-    = f.association :category, label: t('.category')
-
+    = form.input :name, label: t('.name')
+    = form.input :description, label: t('.description')
+    = form.input :due_date, label: t('.due_date')
+    = form.association :category, label: t('.category')
+    = link_to_add_nested(form , :participating_users, '#participants', partial:'participating_user_fields', link_text:"Agregar")
+    #participants 
+    
   .form-actions
-    = f.button :submit
+    = form.button :submit, t('common.submit')

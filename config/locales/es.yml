@@ -18,6 +18,7 @@ es:
       category: Categoría
     new_task: Nueva taréa
   common:
+    submit: Enviar
     actions: Acciones
     back: Volver
     cancel: Cancelar

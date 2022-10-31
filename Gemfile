@@ -20,6 +20,7 @@ gem "stimulus-rails"
 gem "sprockets-rails"
 gem "turbo-rails"
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
+gem 'vanilla_nested', github: 'arielj/vanilla-nested', branch: :main
 
 
 group :development, :test do
