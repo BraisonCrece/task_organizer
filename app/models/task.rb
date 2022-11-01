@@ -9,6 +9,8 @@
 #  category_id :bigint           not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  owner_id    :bigint           not null
+#  code        :string
 #
 class Task < ApplicationRecord
   before_create :create_code
@@ -18,7 +20,7 @@ class Task < ApplicationRecord
   belongs_to :owner, class_name: 'User'
   has_many :participating_users, class_name: 'Participant', dependent: :destroy
   has_many :participants, through: :participating_users, source: :user
-
+  has_many :notes, dependent: :destroy
   accepts_nested_attributes_for :participating_users, reject_if: :all_blank, allow_destroy: true
   
   validates :participating_users, presence: true
