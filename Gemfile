@@ -5,6 +5,7 @@ ruby "3.1.2"
 gem "annotate"
 gem "bootsnap", require: false
 gem "cssbundling-rails"
+gem "cancancan"
 gem "cocoon"
 gem "devise"
 gem "hamlit"

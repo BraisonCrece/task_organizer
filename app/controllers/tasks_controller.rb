@@ -1,9 +1,14 @@
 class TasksController < ApplicationController
+  load_and_authorize_resource
   before_action :set_task, only: %i[ show edit update destroy ]
-
+  before_action :select_users, only: :new
   # GET /tasks or /tasks.json
   def index
-    @tasks = Task.all
+    @tasks = Task.joins(:participants).where(
+      'owner_id = ? OR participants.user_id = ?',
+      current_user.id,
+      current_user.id
+    ).group(:id)
   end
 
   # GET /tasks/1 or /tasks/1.json
@@ -78,5 +83,9 @@ class TasksController < ApplicationController
           :_destroy
         ]
       )
+    end
+
+    def select_users
+      @select_user = User.all.map {|u| [u.email, u.id]}.select { |user| user[0] != current_user.email }
     end
 end
