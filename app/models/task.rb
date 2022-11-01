@@ -11,6 +11,8 @@
 #  updated_at  :datetime         not null
 #
 class Task < ApplicationRecord
+  before_create :create_code
+
   belongs_to :category
   belongs_to :owner, class_name: 'User'
   has_many :participating_users, class_name: 'Participant', dependent: :destroy
@@ -28,5 +30,10 @@ class Task < ApplicationRecord
     if due_date.present? && due_date < Date.today
       errors.add(:due_date, I18n.t("task.errors.due_date"))
     end
+  end 
+
+  def create_code
+    self.code = "#{owner_id}#{Time.now.to_i.to_s(36)}#{SecureRandom.hex(8)}"
   end
+
 end
