@@ -13,15 +13,13 @@
   %b Category:
   = @task.category
 
-.notes-container
-  - @task.notes.each do |note|  
-    .note
-      %p= note.body
-      %p= note.created_at
-      
-  = simple_form_for Note.new, url: task_notes_path(task_id: @task.id) do |f|
-    = f.input :body, label: false, input_html: { autocomplete: :off, placeholder: 'Add a note' }
-    = f.button :submit, 'Add note', class: 'btn btn-primary'
+
+#notes
+  - @task.notes.each do |note|
+    = render partial: 'tasks/notes/note', locals: {note: note}
+%div{'data-controller': 'reset-form'}
+  = simple_form_for(Note.new, url: task_notes_path(task_id: @task.id),  data: { action: "turbo:submit-end->reset-form#reset" } ) do |f|
+    = f.input :body, as: :string, label: false, input_html: { autocomplete: :off, placeholder: 'Add a note' }
 
 = link_to 'Edit', edit_task_path(@task)
 \|

@@ -4,6 +4,19 @@ class Tasks::NotesController < ApplicationController
     @note = @task.notes.new(note_params)
     @note.user = current_user
     @note.save
+
+    if @note.persisted?
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.append(
+            :notes,
+            partial: 'tasks/notes/note',
+            locals: { note: @note }
+          ),
+          status: 303
+        end
+      end
+    end
   end
 
   private
