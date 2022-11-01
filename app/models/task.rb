@@ -12,6 +12,7 @@
 #
 class Task < ApplicationRecord
   before_create :create_code
+  after_commit :send_email, on: :create
 
   belongs_to :category
   belongs_to :owner, class_name: 'User'
@@ -34,6 +35,13 @@ class Task < ApplicationRecord
 
   def create_code
     self.code = "#{owner_id}#{Time.now.to_i.to_s(36)}#{SecureRandom.hex(8)}"
+  end
+
+  def send_email
+    @involucrados = participants + [owner]   
+    @involucrados.each do |user|   
+      ParticipantMailer.with(user: user, task: self).new_task_email.deliver_now
+    end
   end
 
 end

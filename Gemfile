@@ -33,6 +33,7 @@ end
 group :development do
   gem "hamlit-rails"
   gem "web-console"
+  gem 'letter_opener' 
 end
 
 group :test do
@@ -40,3 +41,5 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem "faker", "~> 2.23"

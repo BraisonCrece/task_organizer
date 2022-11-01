@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   load_and_authorize_resource
   before_action :set_task, only: %i[ show edit update destroy ]
-  before_action :select_users, only: :new
+  before_action :select_users, only: %i[new create]
   
   # GET /tasks or /tasks.json
   def index
@@ -87,6 +87,6 @@ class TasksController < ApplicationController
     end
 
     def select_users
-      @select_user = User.all.map {|u| [u.email, u.id]}.select { |user| user[0] != current_user.email }
+      @select_user = User.all.collect { |u| [u.email, u.id] }     
     end
 end
