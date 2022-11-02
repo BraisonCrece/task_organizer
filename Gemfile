@@ -8,6 +8,7 @@ gem "cssbundling-rails"
 gem "cancancan"
 gem "cocoon"
 gem "devise"
+gem 'font-awesome-sass', '~> 5.12.0'
 gem "hamlit"
 gem "jbuilder"
 gem "jsbundling-rails"

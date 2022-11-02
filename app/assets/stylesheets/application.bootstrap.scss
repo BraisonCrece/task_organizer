@@ -1,2 +1,17 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Nunito&display=swap');
+
+.logo-text {
+  color: white;
+  font-family: 'Lobster', cursive;
+  font-size: 1.5em;
+}
+
+.logo-img {
+  height: 2.5rem;
+}
+
+.dropdown-item {
+  color: white;
+}
