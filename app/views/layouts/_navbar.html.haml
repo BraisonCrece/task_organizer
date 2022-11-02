@@ -1,0 +1,35 @@
+%nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+  .container-fluid
+    = link_to root_path, class: 'navbar-brand d-inline-block align-text-top', alt: 'logo' do
+      .logo-text
+        = image_tag 'logo.png', class: 'logo-img'
+        Taskicer
+
+    %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarSupportedContent", "data-bs-toggle" => "collapse", :type => "button"}
+      %span.navbar-toggler-icon
+    #navbarSupportedContent.collapse.navbar-collapse
+
+      %ul.navbar-nav.me-auto.mb-2.mb-lg-0
+        %li.nav-item
+          = link_to 'Categorías', categories_path, class: 'nav-link'
+
+
+      - if user_signed_in?          
+        .dropdown
+          %button.btn.dropdown-toggle{"aria-expanded": "false", "data-bs-toggle": "dropdown", :type => "button"}
+            = image_tag "https://robohash.org/#{current_user.email}?size=45x45"
+          .dropdown-menu.bg-dark
+            %li
+              = button_to 'Log out', destroy_user_session_path, method: :delete , class: "dropdown-item"
+      - else        
+        %button.btn.btn-primary.dropdown-toggle{"aria-expanded": "false", "data-bs-toggle": "dropdown", :type => "button"}
+          Log in
+        .dropdown-menu.bg-dark
+          %li
+            = link_to 'Log in', new_user_session_path, class: "dropdown-item"
+          %li
+            = link_to 'Sign up', new_user_registration_path, class: "dropdown-item"  
+
+
+
+      
