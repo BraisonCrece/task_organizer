@@ -24,3 +24,27 @@
 task-category {
   margin-top: -4px;
 }
+
+.task-title,
+.task-description,
+.task-date {
+  margin: .5rem 0;
+}
+
+.form-group {
+  margin: 1rem 0;
+}
+
+.form-actions {
+  margin-bottom: 2rem;
+}
+
+.vanilla-nested-add {
+  text-decoration: none;
+
+  cursor: pointer;
+
+  &:hover {
+    color: blue;
+  }
+}
