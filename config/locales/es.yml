@@ -17,6 +17,7 @@ es:
       category: Categoría
     new_task: Nueva taréa
   common:
+    are_you_sure: ¿Estás seguro?
     submit: Enviar
     actions: Acciones
     back: Volver
