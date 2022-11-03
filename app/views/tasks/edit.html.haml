@@ -1,7 +1,10 @@
-%h1 Editing task
+.task.edit-page
+  .card
+    .card-body
+      %h1 Editar tarea
 
-= render 'form'
+      = render 'form'
 
-= link_to 'Show', @task
-\|
-= link_to 'Back', tasks_path
+      = link_to 'Show', @task, class: 'btn btn-dark'
+      \|
+      = link_to 'Back', tasks_path, class: 'btn btn-dark'

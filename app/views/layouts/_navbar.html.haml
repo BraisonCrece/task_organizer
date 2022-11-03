@@ -14,10 +14,11 @@
           = link_to 'Categorías', categories_path, class: 'nav-link'
 
 
-      - if user_signed_in?          
+      - if user_signed_in?
+        = link_to "Nueva tarea", new_task_path, class: "btn btn-secondary"          
         .dropdown
           %button.btn.dropdown-toggle{"aria-expanded": "false", "data-bs-toggle": "dropdown", :type => "button"}
-            = image_tag "https://robohash.org/#{current_user.email}?size=45x45"
+            = image_tag "https://robohash.org/#{current_user.email}?size=45x45", class: "avatar_img"
           .dropdown-menu.bg-dark
             %li
               = button_to 'Log out', destroy_user_session_path, method: :delete , class: "dropdown-item"
