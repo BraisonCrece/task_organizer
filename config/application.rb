@@ -18,13 +18,17 @@ require "action_cable/engine"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+
+
 module Organizer
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
     # Configuration for the application, engines, and railties goes here.
-    #
+    config.generators do |g|
+      g.orm :mongoid
+    end
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #

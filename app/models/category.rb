@@ -1,6 +1,7 @@
 class Category
   include Mongoid::Document
-  include Mongoid::Timestamp
+  include Mongoid::Timestamps
+  
   has_many :tasks
 
   field :name, type: String

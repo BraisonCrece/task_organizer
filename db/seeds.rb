@@ -3,16 +3,15 @@
 end  
 
 puts 'Users has been created'
- 
+
 ['desarrollo', 'mercadeo', 'conceptualización', 'ejercicios'].each do |name|
   Category.create name: name, description: Faker::Quotes::Chiquito.joke
 end
-  
+
 puts 'Categories has been created'
- 
 
 owner = User.find_by(email: 'brais@gmail.com')
-  
+
 [
   ['conceptualización', 'Bienvenida ', ['juan:1', 'leon:2', 'andrea:random']],
   ['conceptualización', '¿Qué es ruby on rails y por qué usarlo?', ['juan:1', 'leon:2', 'andrea:random']],

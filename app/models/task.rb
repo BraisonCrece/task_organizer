@@ -1,33 +1,33 @@
-# == Schema Information
-#
-# Table name: tasks
-#
-#  id          :bigint           not null, primary key
-#  name        :string
-#  description :text
-#  due_date    :date
-#  category_id :bigint           not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  owner_id    :bigint           not null
-#  code        :string
-#
-class Task < ApplicationRecord
-  before_create :create_code
-  after_commit :send_email, on: :create
+class Task
+  include Mongoid::Document
+  include Mongoid::Timestamps
 
+  field :name, type: String
+  field :description, type: String
+  field :due_date, type: Date
+  field :code, type: String
+
+  
   belongs_to :category
   belongs_to :owner, class_name: 'User'
-  has_many :participating_users, class_name: 'Participant', dependent: :destroy
-  has_many :participants, through: :participating_users, source: :user
-  has_many :notes, dependent: :destroy
-  accepts_nested_attributes_for :participating_users, reject_if: :all_blank, allow_destroy: true
+  has_many :participating_users, class_name: 'Participant'
+  # has_many :participants, through: :participating_users, source: :user
+  has_many :notes
+  
   
   validates :participating_users, presence: true
-
   validates :name, :description, presence: true
   validates :name, uniqueness: { case_sensitive: false }
   validate :due_date_validity
+  
+  before_create :create_code
+  after_save :send_email, if: :create
+  
+  accepts_nested_attributes_for :participating_users, reject_if: :all_blank, allow_destroy: true
+
+  def participants
+    participating_users.includes(:user).map(&:user)
+  end
 
   def due_date_validity
     if due_date.present? && due_date < Date.today
@@ -40,6 +40,7 @@ class Task < ApplicationRecord
   end
 
   def send_email
+    return
     @involucrados = participants + [owner]   
     @involucrados.each do |user|   
       ParticipantMailer.with(user: user, task: self).new_task_email.deliver_now

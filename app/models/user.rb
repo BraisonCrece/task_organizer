@@ -1,22 +1,23 @@
-# == Schema Information
-#
-# Table name: users
-#
-#  id                     :bigint           not null, primary key
-#  email                  :string           default(""), not null
-#  encrypted_password     :string           default(""), not null
-#  reset_password_token   :string
-#  reset_password_sent_at :datetime
-#  remember_created_at    :datetime
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
-#
-class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+class User
+  include Mongoid::Document
+  include Mongoid::Timestamps
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many :owned_tasks
+
+  field :email,              type: String, default: ""
+  field :encrypted_password, type: String, default: ""
+
+  field :reset_password_token,   type: String
+  field :reset_password_sent_at, type: Time
+
+  field :remember_created_at, type: Time
+
+  has_many :owned_tasks, class_name: 'Task'
   has_many :participations, class_name: 'Participant'
-  has_many :tasks, through: :participations
+  # has_many :tasks, through: :participations
+
+  def tasks
+    participations.includes(:task).map(&:task)
+  end
 end

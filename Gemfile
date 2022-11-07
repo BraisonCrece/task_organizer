@@ -7,11 +7,12 @@ gem "cssbundling-rails"
 gem "cancancan"
 gem "cocoon"
 gem "devise"
+gem "faker", "~> 2.23"
 gem 'font-awesome-sass', '~> 5.12.0'
 gem "hamlit"
 gem "jbuilder"
 gem "jsbundling-rails"
-gem 'mongoid', github: 'mongodb/mongoid', branch: 'master'
+gem 'mongoid', '~> 8.0'
 gem "puma", "~> 5.0"
 gem "rails", "~> 7.0.4"
 gem "rails-i18n"
@@ -42,4 +43,3 @@ group :test do
   gem "webdrivers"
 end
 
-gem "faker", "~> 2.23"
