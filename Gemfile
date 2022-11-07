@@ -2,7 +2,6 @@ source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.2"
-gem "annotate"
 gem "bootsnap", require: false
 gem "cssbundling-rails"
 gem "cancancan"
@@ -12,7 +11,7 @@ gem 'font-awesome-sass', '~> 5.12.0'
 gem "hamlit"
 gem "jbuilder"
 gem "jsbundling-rails"
-gem "pg", "~> 1.1"
+gem 'mongoid', github: 'mongodb/mongoid', branch: 'master'
 gem "puma", "~> 5.0"
 gem "rails", "~> 7.0.4"
 gem "rails-i18n"

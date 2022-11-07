@@ -5,6 +5,17 @@ GIT
   specs:
     vanilla_nested (1.7.0)
 
+GIT
+  remote: https://github.com/mongodb/mongoid.git
+  revision: edbca8ab74478d70ea9f4119485a7ca5b25b41ed
+  branch: master
+  specs:
+    mongoid (9.0.0.alpha)
+      activemodel (>= 5.1, < 7.1, != 7.0.0)
+      concurrent-ruby (>= 1.0.5, < 1.2)
+      mongo (>= 2.18.0, < 3.0.0)
+      ruby2_keywords (~> 0.0.5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -75,13 +86,11 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.1)
       public_suffix (>= 2.0.2, < 6.0)
-    annotate (3.2.0)
-      activerecord (>= 3.2, < 8.0)
-      rake (>= 10.4, < 14.0)
     bcrypt (3.1.18)
     bindex (0.8.1)
     bootsnap (1.13.0)
       msgpack (~> 1.2)
+    bson (4.15.0)
     builder (3.2.4)
     cancancan (3.4.0)
     capybara (3.37.1)
@@ -150,6 +159,8 @@ GEM
     method_source (1.0.0)
     mini_mime (1.1.2)
     minitest (5.16.3)
+    mongo (2.18.1)
+      bson (>= 4.14.1, < 5.0.0)
     msgpack (1.6.0)
     net-imap (0.3.1)
       net-protocol
@@ -163,7 +174,6 @@ GEM
     nokogiri (1.13.9-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
-    pg (1.4.4)
     pry (0.14.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -215,6 +225,7 @@ GEM
       actionpack (>= 5.0)
       railties (>= 5.0)
     rexml (3.2.5)
+    ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     sassc (2.4.0)
       ffi (~> 1.9)
@@ -271,7 +282,6 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  annotate
   bootsnap
   cancancan
   capybara
@@ -286,7 +296,7 @@ DEPENDENCIES
   jbuilder
   jsbundling-rails
   letter_opener
-  pg (~> 1.1)
+  mongoid!
   pry
   pry-doc
   puma (~> 5.0)
